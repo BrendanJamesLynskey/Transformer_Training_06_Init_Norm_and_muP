@@ -495,7 +495,7 @@
     </ul>
     <div class="callout">
         <div class="callout-label">Live companion and sources</div>
-        <p>This deck follows <a href="https://transformer-decoder-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a>. Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> &sect;7a&ndash;7e. Part 1&rsquo;s design: <a href="https://transformer-decoder-explained.vercel.app/learn/05-layernorm-residuals">LayerNorm and residuals</a>.</p>
+        <p>This deck follows <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a>. Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> &sect;7a&ndash;7e. Part 1&rsquo;s design: <a href="https://transformer-decoder-explained.vercel.app/learn/05-layernorm-residuals">LayerNorm and residuals</a>.</p>
     </div>
 </section>
 
@@ -568,8 +568,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">entering block (9 = leaving block 8)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">residual-stream RMS</text>
-<clipPath id="clip133408786455680"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip133408786455680)">
+<clipPath id="clip129418997676416"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip129418997676416)">
 <path class="ln s1" d="M83.8,211.2 L127.3,182.9 L170.9,153.1 L214.4,117.4 L258.0,99.4 L301.6,91.7 L345.1,76.3 L388.7,53.4 L432.2,28.4"/>
 <circle class="pt s1" cx="83.8" cy="211.2" r="3"/>
 <circle class="pt s1" cx="127.3" cy="182.9" r="3"/>
@@ -645,8 +645,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">block (1 = nearest the input)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">weight-gradient norm</text>
-<clipPath id="clip133408786453440"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip133408786453440)">
+<clipPath id="clip129418997677184"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip129418997677184)">
 <path class="ln s1" d="M86.5,160.9 L135.5,170.5 L184.5,175.4 L233.5,196.5 L282.5,188.4 L331.5,170.1 L380.5,168.0 L429.5,188.5"/>
 <circle class="pt s1" cx="86.5" cy="160.9" r="3"/>
 <circle class="pt s1" cx="135.5" cy="170.5" r="3"/>
@@ -747,8 +747,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">width (log scale)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">RMS change after 10 steps</text>
-<clipPath id="clip133408786691904"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip133408786691904)">
+<clipPath id="clip129418997971520"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip129418997971520)">
 <path class="ln s2" d="M87.9,232.6 L174.5,214.2 L261.1,207.9 L347.6,197.8 L434.2,182.9"/>
 <circle class="pt s2" cx="87.9" cy="232.6" r="3"/>
 <circle class="pt s2" cx="174.5" cy="214.2" r="3"/>
@@ -811,11 +811,11 @@
         <li><strong>RMSNorm</strong> drops the mean and shift: cheaper, at least as good here.</li>
         <li>Under SP the best learning rate shifts with width; <strong>&micro;P</strong> makes updates width-independent so a narrow model&rsquo;s rate transfers.</li>
     </ul>
-    <p class="live-link">Animated: <a href="https://transformer-decoder-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a> &middot; next: <a href="https://brendanjameslynskey.github.io/Transformer_Training_07_Stability/">deck 07, stability</a></p>
+    <p class="live-link">Animated: <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a> &middot; next: <a href="https://brendanjameslynskey.github.io/Transformer_Training_07_Stability/">deck 07, stability</a></p>
 </section>
 
 <footer class="footer">
-    <p>Part of the <a href="https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Training">Transformer Training series</a> &middot; live, animated companion: <a href="https://transformer-decoder-explained.vercel.app/training/07-init-norm-mup">chapter 7, Initialisation, normalisation and µP</a> of <a href="https://transformer-decoder-explained.vercel.app/training">Transformer Decoder Explained, Part 2</a></p>
+    <p>Part of the <a href="https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Training">Transformer Training series</a> &middot; live, animated companion: <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, Initialisation, normalisation and µP</a> of <a href="https://transformer-training-explained.vercel.app/training">Transformer Decoder Explained, Part 2</a></p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;"><a href="https://brendanjameslynskey.github.io/Transformer_Training_05_Learning_Rate_and_Batch_Size/">&larr; 05 LR &amp; Batch</a> &nbsp;&middot;&nbsp; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Transformer_Training/">Series index</a> &nbsp;&middot;&nbsp; <a href="https://brendanjameslynskey.github.io/Transformer_Training_07_Stability/">07 Stability &rarr;</a></p>
     <p style="margin-top: 0.5rem; font-size: 0.75rem;">Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> (transformer-explainer @15b1c9f). Code on these slides is cut from that repository.</p>
 </footer>
