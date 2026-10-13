@@ -8,7 +8,7 @@ Initial weight scale; pre-LN vs post-LN through depth and in training; RMSNorm; 
 
 ## Live, animated companion
 
-This deck is the slide companion to Part 2 (Training) of [Transformer Decoder Explained](https://transformer-training-explained.vercel.app/training), where the same model trains in your browser:
+This deck is the slide companion to [Training](https://transformer-training-explained.vercel.app/training), the second site of the Foundations track (after Decoder), where the Decoder's model trains in your browser:
 
 - [Chapter 7: Initialisation, normalisation and µP](https://transformer-training-explained.vercel.app/training/07-init-norm-mup)
 

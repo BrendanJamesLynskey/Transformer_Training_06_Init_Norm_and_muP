@@ -495,7 +495,7 @@
     </ul>
     <div class="callout">
         <div class="callout-label">Live companion and sources</div>
-        <p>This deck follows <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a>. Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> &sect;7a&ndash;7e. Part 1&rsquo;s design: <a href="https://transformer-decoder-explained.vercel.app/learn/05-layernorm-residuals">LayerNorm and residuals</a>.</p>
+        <p>This deck follows <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, initialisation, normalisation and &micro;P</a>. Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> &sect;7a&ndash;7e. The Decoder&rsquo;s design: <a href="https://transformer-decoder-explained.vercel.app/learn/05-layernorm-residuals">LayerNorm and residuals</a>.</p>
     </div>
 </section>
 
@@ -510,7 +510,7 @@
         </div>
         <div class="diagram-panel accent-border">
             <h4>GPT-2: \(\sigma = 0.02\)</h4>
-            <p>Part 1&rsquo;s choice (<a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Radford et al. 2019</a>), far smaller here: every sublayer starts out adding almost nothing. GPT-2 also scales residual layers&rsquo; weights by \(1/\sqrt N\) for \(N\) residual layers, because every block adds to the same stream.</p>
+            <p>The Decoder&rsquo;s choice (<a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Radford et al. 2019</a>), far smaller here: every sublayer starts out adding almost nothing. GPT-2 also scales residual layers&rsquo; weights by \(1/\sqrt N\) for \(N\) residual layers, because every block adds to the same stream.</p>
         </div>
     </div>
 </section>
@@ -520,7 +520,7 @@
     <h2>Pre-LN and Post-LN</h2>
     <div class="diagram-grid cols-2">
         <div class="diagram-panel accent-border">
-            <h4>Pre-LN (Part 1&rsquo;s design, GPT-2 onwards)</h4>
+            <h4>Pre-LN (the Decoder&rsquo;s design, GPT-2 onwards)</h4>
             <p>$$x_{l+1} = x_l + F_l(\operatorname{LN}(x_l))$$ The sublayer reads a normalised copy; the stream itself is only ever added to.</p>
         </div>
         <div class="diagram-panel accent-border">
@@ -528,7 +528,7 @@
             <p>$$x_{l+1} = \operatorname{LN}(x_l + F_l(x_l))$$ Every block normalises the sum, so every gradient must pass through the LayerNorms above it.</p>
         </div>
     </div>
-    <p>The experiment: an 8-block version of Part 1&rsquo;s model at initialisation, on &ldquo;alice was&rdquo;, with weights at std 0.02 and at std 0.25: the RMS of the residual stream entering each block, and the norm of each block&rsquo;s weight gradients (results.md &sect;7a).</p>
+    <p>The experiment: an 8-block version of the Decoder&rsquo;s model at initialisation, on &ldquo;alice was&rdquo;, with weights at std 0.02 and at std 0.25: the RMS of the residual stream entering each block, and the norm of each block&rsquo;s weight gradients (results.md &sect;7a).</p>
 </section>
 
 <section class="slide" id="slide-03">
@@ -568,8 +568,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">entering block (9 = leaving block 8)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">residual-stream RMS</text>
-<clipPath id="clip129418997676416"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip129418997676416)">
+<clipPath id="clip136114099921024"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip136114099921024)">
 <path class="ln s1" d="M83.8,211.2 L127.3,182.9 L170.9,153.1 L214.4,117.4 L258.0,99.4 L301.6,91.7 L345.1,76.3 L388.7,53.4 L432.2,28.4"/>
 <circle class="pt s1" cx="83.8" cy="211.2" r="3"/>
 <circle class="pt s1" cx="127.3" cy="182.9" r="3"/>
@@ -602,7 +602,7 @@
 <circle class="pt s0" cx="432.2" cy="212.2" r="3"/>
 </g>
 <g class="legend"><rect class="legend-bg" x="68" y="24" width="146" height="56" rx="4"/><line class="ln s1" x1="76" x2="94" y1="34" y2="34"/><text class="lbl" x="99" y="38">pre-LN, std 0.25</text><line class="ln s2" x1="76" x2="94" y1="50" y2="50"/><text class="lbl" x="99" y="54">post-LN, std 0.25</text><line class="ln s0" x1="76" x2="94" y1="66" y2="66" stroke-dasharray="5 4"/><text class="lbl" x="99" y="70">pre-LN, std 0.02</text></g>
-</svg><div class="chart-cap">An 8-block version of Part 1&rsquo;s model at initialisation on &ldquo;alice was&rdquo; (results.md &sect;7a).</div></div>
+</svg><div class="chart-cap">An 8-block version of the Decoder&rsquo;s model at initialisation on &ldquo;alice was&rdquo; (results.md &sect;7a).</div></div>
     <p>With std 0.02 every sublayer adds almost nothing: the pre-LN stream is essentially the embedding plus the positional encoding, RMS 0.70 at every depth. With std 0.25 the pre-LN stream <strong>grows with depth</strong>, from 0.72 entering block 1 to 4.30 leaving block 8, because each block adds to it. Post-LN normalises after every addition, so its stream stays at RMS 1.</p>
 </section>
 
@@ -645,8 +645,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">block (1 = nearest the input)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">weight-gradient norm</text>
-<clipPath id="clip129418997677184"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip129418997677184)">
+<clipPath id="clip136114096678144"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip136114096678144)">
 <path class="ln s1" d="M86.5,160.9 L135.5,170.5 L184.5,175.4 L233.5,196.5 L282.5,188.4 L331.5,170.1 L380.5,168.0 L429.5,188.5"/>
 <circle class="pt s1" cx="86.5" cy="160.9" r="3"/>
 <circle class="pt s1" cx="135.5" cy="170.5" r="3"/>
@@ -703,7 +703,7 @@
             </tbody>
         </table>
     </div>
-    <p>Cheaper and, in practice, as good; LLaMA uses it, as pre-normalisation (<a href="https://arxiv.org/abs/2302.13971">Touvron et al. 2023, &sect;2.2</a>). On Part 1&rsquo;s model (the default run, three seeds) RMSNorm even ends lower with fewer parameters, but LayerNorm&rsquo;s spread over the seeds is wide: read it as &ldquo;at least as good&rdquo; (results.md &sect;7c).</p>
+    <p>Cheaper and, in practice, as good; LLaMA uses it, as pre-normalisation (<a href="https://arxiv.org/abs/2302.13971">Touvron et al. 2023, &sect;2.2</a>). On the Decoder&rsquo;s model (the default run, three seeds) RMSNorm even ends lower with fewer parameters, but LayerNorm&rsquo;s spread over the seeds is wide: read it as &ldquo;at least as good&rdquo; (results.md &sect;7c).</p>
 </section>
 
 <section class="slide" id="slide-07">
@@ -715,7 +715,7 @@
         <p>With Adam each weight moves by about the learning rate per step (deck 04). A wider matrix sums more of those moves into each output, so the same learning rate is a bigger effective step for a wider model, and the best rate shifts down as the width grows.</p>
     </div>
     <p>The <strong>maximal update parameterisation</strong> (&micro;P; <a href="https://arxiv.org/abs/2203.03466">Yang et al. 2022</a>) rescales the initialisation, the learning rate and a few multipliers with the width so that each step changes every layer&rsquo;s activations by about the same amount at any width. Then the best rate found on a narrow model carries over (&ldquo;&micro;Transfer&rdquo;).</p>
-    <p>What &micro;P changes for Adam, relative to a base width \(d_0\) (here 16, Part 1&rsquo;s) with \(m = d/d_0\): hidden matrices start at std \(0.02/\sqrt m\) and their learning rate is divided by \(m\); attention scores are scaled by \(1/d_k\) instead of \(1/\sqrt{d_k}\); the logits are divided by \(m\) (Yang et al., Table 3).</p>
+    <p>What &micro;P changes for Adam, relative to a base width \(d_0\) (here 16, the Decoder&rsquo;s) with \(m = d/d_0\): hidden matrices start at std \(0.02/\sqrt m\) and their learning rate is divided by \(m\); attention scores are scaled by \(1/d_k\) instead of \(1/\sqrt{d_k}\); the logits are divided by \(m\) (Yang et al., Table 3).</p>
 </section>
 
 <section class="slide" id="slide-08">
@@ -747,8 +747,8 @@
 <line class="axis" x1="62" x2="62" y1="18" y2="248"/>
 <text class="lbl ax" x="258" y="284" text-anchor="middle">width (log scale)</text>
 <text class="lbl ax" x="13" y="133" text-anchor="middle" transform="rotate(-90 13 133)">RMS change after 10 steps</text>
-<clipPath id="clip129418997971520"><rect x="62" y="18" width="392" height="230"/></clipPath>
-<g clip-path="url(#clip129418997971520)">
+<clipPath id="clip136114097108096"><rect x="62" y="18" width="392" height="230"/></clipPath>
+<g clip-path="url(#clip136114097108096)">
 <path class="ln s2" d="M87.9,232.6 L174.5,214.2 L261.1,207.9 L347.6,197.8 L434.2,182.9"/>
 <circle class="pt s2" cx="87.9" cy="232.6" r="3"/>
 <circle class="pt s2" cx="174.5" cy="214.2" r="3"/>
@@ -815,7 +815,7 @@
 </section>
 
 <footer class="footer">
-    <p>Part of the <a href="https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Training">Transformer Training series</a> &middot; live, animated companion: <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, Initialisation, normalisation and µP</a> of <a href="https://transformer-training-explained.vercel.app/training">Transformer Decoder Explained, Part 2</a></p>
+    <p>Part of the <a href="https://github.com/BrendanJamesLynskey/LLM_Hub_Transformer_Training">Transformer Training series</a> &middot; live, animated companion: <a href="https://transformer-training-explained.vercel.app/training/07-init-norm-mup">chapter 7, Initialisation, normalisation and µP</a> of the <a href="https://transformer-training-explained.vercel.app/training">Training</a> site</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;"><a href="https://brendanjameslynskey.github.io/Transformer_Training_05_Learning_Rate_and_Batch_Size/">&larr; 05 LR &amp; Batch</a> &nbsp;&middot;&nbsp; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Transformer_Training/">Series index</a> &nbsp;&middot;&nbsp; <a href="https://brendanjameslynskey.github.io/Transformer_Training_07_Stability/">07 Stability &rarr;</a></p>
     <p style="margin-top: 0.5rem; font-size: 0.75rem;">Measured numbers: <a href="https://github.com/BrendanJamesLynskey/transformer-explainer/blob/main/results.md">results.md</a> (transformer-explainer @15b1c9f). Code on these slides is cut from that repository.</p>
 </footer>
